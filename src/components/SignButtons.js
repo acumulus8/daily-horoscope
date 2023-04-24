@@ -12,6 +12,7 @@ import Aquarius from "./../assets/signs-icons/aquarius.png";
 import Capricorn from "./../assets/signs-icons/capricorn.png";
 import Pisces from "./../assets/signs-icons/pisces.png";
 
+import { useMessageHandler } from "../contexts/MessageGenerator";
 import { Card } from "antd";
 const { Meta } = Card;
 
@@ -31,6 +32,8 @@ const signImages = {
 };
 
 function SignButtons() {
+	const { generateHoroscope } = useMessageHandler();
+
 	const renderCards = () => {
 		return Object.keys(signImages).map((sign) => {
 			return (
@@ -38,8 +41,9 @@ function SignButtons() {
 					key={sign}
 					className="sign-button"
 					hoverable
-					cover={<img alt={sign + " sign image."} src={signImages[sign]} boxShadow={[0, 10, 10, 0, "white"]} />}
+					cover={<img alt={sign + " sign image."} src={signImages[sign]} />}
 					bodyStyle={{ padding: "10px 0", textAlign: "center", color: "#fff" }}
+					onClick={() => generateHoroscope(sign)}
 				>
 					<Meta title={sign} />
 				</Card>

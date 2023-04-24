@@ -1,15 +1,18 @@
 import "./styles/App.css";
-
 import Header from "./components/Header";
-import BirthDatePicker from "./components/BirthDatePicker";
 import SignButtons from "./components/SignButtons";
+import HoroscopeResult from "./components/HoroscopeResult";
+import { MessageHandlingProvider } from "./contexts/MessageGenerator";
+import { horoscopeParts } from "./utils/horoscope-parts";
 
 function App() {
 	return (
 		<div className="app">
-			<Header />
-			<BirthDatePicker />
-			<SignButtons />
+			<MessageHandlingProvider horoscopeParts={horoscopeParts}>
+				<Header />
+				<SignButtons />
+				<HoroscopeResult />
+			</MessageHandlingProvider>
 		</div>
 	);
 }
